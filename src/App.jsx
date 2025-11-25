@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { Header } from "./Components/Header";
 import { Main } from "./Components/Main";
 import { ProductDetailPage } from "./Pages/ProductDetailPage";
+import { useState } from "react";
 
 const products = [
   {
@@ -61,13 +62,21 @@ const products = [
     description: "Add some green to your room.",
   },
 ];
+
 function App() {
+  const [cart, setCart] = useState([]);
+
   return (
     <>
       <BrowserRouter>
-        <Header></Header>
+        <Header itemCount={cart.length}></Header>
         <Routes>
-          <Route path="/" element={<Main products={products}></Main>} />
+          <Route
+            path="/"
+            element={
+              <Main products={products} cart={cart} setCart={setCart}></Main>
+            }
+          />
           <Route
             path="product/:id"
             element={<ProductDetailPage products={products} />}
