@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 
-export const ProductDetailPage = ({ products }) => {
+export const ProductDetailPage = ({ products, cart, setCart }) => {
   const params = useParams();
 
   const productDetail = products.find(
@@ -32,7 +32,10 @@ export const ProductDetailPage = ({ products }) => {
               <span className="text-3xl font-bold text-gray-900">
                 ${productDetail.price}
               </span>
-              <button className="px-6 py-3 text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition shadow-md hover:shadow-lg cursor-pointer font-medium">
+              <button
+                className="px-6 py-3 text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition shadow-md hover:shadow-lg cursor-pointer font-medium"
+                onClick={() => setCart([...cart, productDetail])}
+              >
                 Add to Cart
               </button>
             </div>

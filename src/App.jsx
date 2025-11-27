@@ -3,6 +3,7 @@ import { Header } from "./Components/Header";
 import { Main } from "./Components/Main";
 import { ProductDetailPage } from "./Pages/ProductDetailPage";
 import { useState } from "react";
+import CartDetails from "./Pages/CartDetails";
 
 const products = [
   {
@@ -69,7 +70,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header itemCount={cart.length}></Header>
+        <Header itemCount={cart.length} />
         <Routes>
           <Route
             path="/"
@@ -79,8 +80,15 @@ function App() {
           />
           <Route
             path="product/:id"
-            element={<ProductDetailPage products={products} />}
+            element={
+              <ProductDetailPage
+                products={products}
+                cart={cart}
+                setCart={setCart}
+              />
+            }
           />
+          <Route path="Cart" element={<CartDetails cart={cart} />} />
         </Routes>
       </BrowserRouter>
     </>
